@@ -1,11 +1,13 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class ColorLight {
   ///
   /// [Light Colors]
   /// [Primary], [Background], [Card], [Title], [Subtitle], [Font Disable], [Button Disable], [Divider]
-  ///
-  static const Color primary = Color(0xFFFC8080);
+  ///Color(0xFFFC8080)
+  static const Color primary = Colors.orange;
   // static const Color accent = Color(0xFFFF6600);
   static const Color background = Color(0xFFFAFAFA);
   static const Color card = Color(0xFFFFFFFF);
@@ -14,6 +16,9 @@ class ColorLight {
   static const Color fontDisable = Color(0xFF9B9B9B);
   static const Color disabledButton = Color(0xFFB9B9B9);
   static const Color divider = Color(0xFFDCDCDC);
+  //for blue 	3, 169, 244 -> 244, 204, 3
+  //for orange 255, 152, 0 -> 204, 255, 0
+  static const Color cardMoneyColor = Colors.black;
 
   ///
   /// [Success], [Warning], [Error],
@@ -29,7 +34,7 @@ class ColorDark {
   /// [Dark Colors]
   /// [Primary], [Background], [Card], [Title], [Subtitle], [Font Disable], [Button Disable], [Divider]
   ///
-  static const Color primary = Color(0xFFFC8080);
+  static const Color primary = Color.fromRGBO(255, 89, 0, 1.0);
   // static const Color accent = Color(0xFFFF6600);
   static const Color background = Color(0xFF303030);
   static const Color card = Color(0xFF424242);
@@ -38,6 +43,7 @@ class ColorDark {
   static const Color fontDisable = Color(0xFF989898);
   static const Color disabledButton = Color(0xFF6E6E6E);
   static const Color divider = Color(0xFF494949);
+  static const Color cardMoneyColor = Colors.white;
 
   ///
   /// [Success], [Warning], [Error],

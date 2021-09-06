@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taj_mall/providers/theme_provider.dart';
 import 'package:taj_mall/views/Home/woman_tab/woman_tab.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   final List<Widget> _tabs = [
     Tab(text: "Женщинам"),
     Tab(text: "Мужчинам"),
@@ -29,7 +31,12 @@ class _HomeScreenState extends State<HomeScreen>
   ];
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
@@ -39,11 +46,10 @@ class _HomeScreenState extends State<HomeScreen>
               horizontal: 10,
               vertical: 5,
             ),
-            prefixIcon: Icon(Icons.search, color: Colors.black),
-            prefixStyle: TextStyle(color: Colors.black),
+            prefixIcon: Icon(Icons.search, color: theme.backgroundColor),
             hintText: "Поиск",
             hintStyle: TextStyle(color: Colors.black26, fontSize: 16),
-            fillColor: Color.fromRGBO(227, 70, 70, 0.5),
+            fillColor: Color.fromRGBO(230, 156, 46, 1),
             filled: true,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -55,7 +61,15 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         actions: [
           SizedBox(width: 10),
-          Icon(Icons.notifications),
+          IconButton(
+            onPressed: () {
+              context.read(themeProvider).changeTheme();
+            },
+            icon: Icon(
+              Icons.notifications,
+              color: theme.backgroundColor,
+            ),
+          ),
           SizedBox(width: 10),
         ],
       ),

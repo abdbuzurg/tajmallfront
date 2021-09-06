@@ -42,7 +42,7 @@ ThemeData themeLight(BuildContext context) {
         fontWeight: FontWeight.w500,
       ),
       headline4: GoogleFonts.poppins(
-        color: ColorLight.fontTitle,
+        color: ColorLight.cardMoneyColor,
         fontSize: 14.0,
         fontWeight: FontWeight.w500,
       ),
@@ -119,7 +119,7 @@ ThemeData themeDark(BuildContext context) {
         fontWeight: FontWeight.w500,
       ),
       headline4: GoogleFonts.poppins(
-        color: ColorDark.fontTitle,
+        color: ColorDark.cardMoneyColor,
         fontSize: 14.0,
         fontWeight: FontWeight.w500,
       ),

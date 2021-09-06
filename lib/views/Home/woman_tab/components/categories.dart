@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:taj_mall/helpers/constants.dart';
 
 class Categories extends StatefulWidget {
   Categories({Key? key}) : super(key: key);
@@ -17,39 +17,43 @@ class _CategoriesState extends State<Categories> {
     "Нижнее\nбильё",
     "Все\nкатегории",
   ];
-  // final List<Icon> categoriesIcons = [
-  //   Icon(FontAwesomeIcons.tshirt),
-
-  // ];
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Container(
       height: 60,
       width: double.infinity,
-      child: ListView(
+      margin: EdgeInsets.symmetric(
+        horizontal: 0,
+        vertical: 10,
+      ),
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        children: [
-          ...categories.map(
-            (category) => Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: theme.primaryColor, width: 1.0),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                color: theme.primaryColor,
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              margin: EdgeInsets.only(left: 5, right: 5),
-              height: 50,
-              child: Center(
-                child: Text(
-                  category,
-                  style: TextStyle(color: theme.backgroundColor),
-                ),
+        clipBehavior: Clip.none,
+        itemCount: categories.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: theme.primaryColor, width: 1.0),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              color: theme.primaryColor,
+              boxShadow: [
+                kDefaultBoxShadow(theme.backgroundColor),
+              ],
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            margin: EdgeInsets.only(left: 5, right: 5),
+            height: 60,
+            child: Center(
+              child: Text(
+                categories[index],
+                style: TextStyle(color: theme.backgroundColor),
               ),
             ),
-          )
-        ],
+          );
+        },
       ),
     );
   }
