@@ -5,7 +5,6 @@ import 'colors.dart';
 
 ThemeData themeLight(BuildContext context) {
   return ThemeData(
-    buttonColor: ColorLight.primary,
     brightness: Brightness.light,
     backgroundColor: ColorLight.background,
     cardColor: ColorLight.card,
@@ -23,6 +22,7 @@ ThemeData themeLight(BuildContext context) {
     scaffoldBackgroundColor: ColorLight.background,
     appBarTheme: AppBarTheme(
       elevation: 0,
+      backgroundColor: ColorLight.primary,
       centerTitle: true,
     ),
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(
@@ -82,7 +82,6 @@ ThemeData themeLight(BuildContext context) {
 
 ThemeData themeDark(BuildContext context) {
   return ThemeData(
-    buttonColor: ColorDark.primary,
     brightness: Brightness.dark,
     backgroundColor: ColorDark.background,
     cardColor: ColorDark.card,
@@ -100,6 +99,7 @@ ThemeData themeDark(BuildContext context) {
     scaffoldBackgroundColor: ColorDark.background,
     appBarTheme: AppBarTheme(
       elevation: 0,
+      backgroundColor: ColorDark.primary,
       centerTitle: true,
     ),
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(

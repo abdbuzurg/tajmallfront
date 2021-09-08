@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:taj_mall/helpers/headline.dart';
-import 'package:taj_mall/views/Home/woman_tab/components/categories.dart';
-import 'package:taj_mall/views/Home/woman_tab/components/recommendations.dart';
 
+import 'components/categories.dart';
 import 'components/new.dart';
+import 'components/recommendations.dart';
 
 class WomanTab extends StatelessWidget {
   const WomanTab({Key? key}) : super(key: key);

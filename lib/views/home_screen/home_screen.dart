@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:taj_mall/helpers/constants.dart';
 import 'package:taj_mall/providers/theme_provider.dart';
-import 'package:taj_mall/views/Home/woman_tab/woman_tab.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'woman_tab/woman_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,14 +14,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  late ScrollController _scrollController = ScrollController();
+  late TabController _tabController =
+      TabController(length: _tabs.length, vsync: this);
   final List<Widget> _tabs = [
     Tab(text: "Женщинам"),
     Tab(text: "Мужчинам"),
     Tab(text: "Детям"),
   ];
-  late ScrollController _scrollController = ScrollController();
-  late TabController _tabController =
-      TabController(length: _tabs.length, vsync: this);
   final List<Widget> _tabViews = [
     WomanTab(),
     Container(
@@ -28,6 +31,12 @@ class _HomeScreenState extends State<HomeScreen>
     Container(
       child: Text("kekD"),
     ),
+  ];
+  final List<String> drawerButtons = [
+    "Бренды",
+    "Бренды",
+    "Бренды",
+    "Бренды",
   ];
 
   @override
@@ -38,8 +47,16 @@ class _HomeScreenState extends State<HomeScreen>
     super.build(context);
     final theme = Theme.of(context);
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         toolbarHeight: 65,
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          color: theme.backgroundColor,
+          onPressed: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
+        ),
         title: TextField(
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
@@ -60,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         actions: [
-          SizedBox(width: 10),
           IconButton(
             onPressed: () {
               context.read(themeProvider).changeTheme();
@@ -70,8 +86,55 @@ class _HomeScreenState extends State<HomeScreen>
               color: theme.backgroundColor,
             ),
           ),
-          SizedBox(width: 10),
         ],
+      ),
+      drawer: Drawer(
+        elevation: 5,
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: theme.primaryColor,
+              ),
+              child: Text(
+                "Taj Mall",
+                style: TextStyle(
+                  color: theme.backgroundColor,
+                  fontSize: theme.textTheme.headline1!.fontSize,
+                ),
+              ),
+            ),
+            ...drawerButtons.map(
+              (text) => InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(
+                    vertical: kDefaultPadding,
+                    horizontal: kDefaultPadding * 2,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1,
+                        color: theme.primaryColor,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: theme.textTheme.headline3!.fontSize,
+                      // fontSize: theme.textTheme.headline1!.fontSize,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       body: NestedScrollView(
         controller: _scrollController,

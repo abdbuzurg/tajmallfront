@@ -1,6 +1,6 @@
-# taj_mall
+# Taj Mall (Contemporary name)
 
-A new Flutter project.
+A mobile front-end component of Taj Mall. 
 
 ## Getting Started
 

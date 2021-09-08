@@ -26,7 +26,7 @@ class _CategoriesState extends State<Categories> {
       height: 60,
       width: double.infinity,
       margin: EdgeInsets.symmetric(
-        horizontal: 0,
+        horizontal: 5,
         vertical: 10,
       ),
       child: ListView.builder(
@@ -40,7 +40,7 @@ class _CategoriesState extends State<Categories> {
               borderRadius: BorderRadius.all(Radius.circular(15)),
               color: theme.primaryColor,
               boxShadow: [
-                kDefaultBoxShadow(theme.backgroundColor),
+                kDefaultBoxShadow(theme.primaryColor),
               ],
             ),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),

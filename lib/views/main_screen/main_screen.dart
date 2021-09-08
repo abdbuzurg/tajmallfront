@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taj_mall/views/Home/home_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:taj_mall/views/home_screen/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
