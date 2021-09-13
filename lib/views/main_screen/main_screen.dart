@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:taj_mall/views/home_screen/home_screen.dart';
 
 class MainScreen extends StatefulWidget {

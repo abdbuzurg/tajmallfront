@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/views/clothes_screen/clother_screen.dart';
+import 'package:taj_mall/views/clothes_screen/clothes_screen.dart';
 
 import 'custom_card_text.dart';
 
@@ -39,7 +39,7 @@ class _CustomCardState extends State<CustomCard> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ClotherScreen(data: widget.oneEntry),
+              builder: (context) => ClothesScreen(data: widget.oneEntry),
             ),
           );
         },
