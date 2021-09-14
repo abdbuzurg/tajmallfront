@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
+import 'package:taj_mall/providers/clothes_state_notifier.dart';
+import 'package:taj_mall/state/clothes.dart';
 import 'package:taj_mall/views/clothes_screen/components/brand_products.dart';
 
 import 'components/available_colors.dart';
@@ -10,27 +13,27 @@ import 'components/available_sizes.dart';
 import 'components/price_and_card.dart';
 import 'components/similar_products.dart';
 
-class ClothesScreen extends StatefulWidget {
-  ClothesScreen({Key? key, required this.data}) : super(key: key);
+late dynamic clothesStateNotifier;
+
+class ClothesScreen extends ConsumerWidget {
+  ClothesScreen(this.data) {
+    clothesStateNotifier =
+        StateNotifierProvider.autoDispose<ClothesStateNotifier, Clothes>(
+            (ref) =>
+                ClothesStateNotifier(Clothes(data.colors[0], data.sizes[0])));
+  }
 
   final WomanData data;
 
   @override
-  _ClothesScreenState createState() => _ClothesScreenState();
-}
-
-class _ClothesScreenState extends State<ClothesScreen> {
-  bool isFavorite = false;
-  int selectedColor = 0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, watch) {
     final theme = Theme.of(context);
     final bool isThereSimilarProducts = dummyWomanData
-            .where((element) => element.type == widget.data.type)
+            .where((element) => element.type == data.type)
             .toList()
             .length >
         1;
+    watch(clothesStateNotifier);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -47,30 +50,30 @@ class _ClothesScreenState extends State<ClothesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Carousel(images: widget.data.images),
+                  Carousel(images: data.images),
                   ClothesTitle(
-                    name: widget.data.name,
-                    brand: widget.data.brand,
+                    name: data.name,
+                    brand: data.brand,
                   ),
                   AvailableColors(
-                    colors: widget.data.colors,
+                    colors: data.colors,
                   ),
-                  AvailableSizes(sizes: widget.data.sizes),
-                  ClothesDescription(description: widget.data.description),
+                  AvailableSizes(sizes: data.sizes),
+                  ClothesDescription(description: data.description),
                   if (isThereSimilarProducts)
                     SimilarProducts(
-                      type: widget.data.type,
-                      id: dummyWomanData.indexOf(widget.data),
+                      type: data.type,
+                      id: dummyWomanData.indexOf(data),
                     ),
                   BrandProducts(
-                    brand: widget.data.brand,
-                    id: dummyWomanData.indexOf(widget.data),
+                    brand: data.brand,
+                    id: dummyWomanData.indexOf(data),
                   ),
                 ],
               ),
             ),
           ),
-          PriceAndCard(price: widget.data.price),
+          PriceAndCard(price: data.price),
         ],
       ),
     );

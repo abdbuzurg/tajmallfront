@@ -39,7 +39,7 @@ class _CustomCardState extends State<CustomCard> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ClothesScreen(data: widget.oneEntry),
+              builder: (context) => ClothesScreen(widget.oneEntry),
             ),
           );
         },

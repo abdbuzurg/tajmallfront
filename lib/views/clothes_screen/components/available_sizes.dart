@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
 import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/views/clothes_screen/clothes_screen.dart';
 
-class AvailableSizes extends StatefulWidget {
-  const AvailableSizes({
-    required this.sizes,
-    Key? key,
-  }) : super(key: key);
-
+class AvailableSizes extends StatelessWidget {
+  const AvailableSizes({required this.sizes});
   final List<String> sizes;
-
-  @override
-  State<AvailableSizes> createState() => _AvailableSizesState();
-}
-
-class _AvailableSizesState extends State<AvailableSizes> {
-  int _selectedSize = 0;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final String selectedSize = context.read(clothesStateNotifier).size;
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: kDefaultPadding,
@@ -35,14 +27,14 @@ class _AvailableSizesState extends State<AvailableSizes> {
             height: 40,
             width: double.infinity,
             child: ListView.builder(
-              itemCount: widget.sizes.length,
+              itemCount: sizes.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () {
-                    setState(() {
-                      _selectedSize = index;
-                    });
+                    context
+                        .read(clothesStateNotifier.notifier)
+                        .updateSize(sizes[index]);
                   },
                   child: Container(
                     width: 40,
@@ -51,7 +43,7 @@ class _AvailableSizesState extends State<AvailableSizes> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: index == _selectedSize
+                      color: sizes[index] == selectedSize
                           ? theme.primaryColor
                           : theme.backgroundColor,
                       border: Border.all(
@@ -61,9 +53,9 @@ class _AvailableSizesState extends State<AvailableSizes> {
                     ),
                     margin: EdgeInsets.only(right: 5),
                     child: Text(
-                      widget.sizes[index],
+                      sizes[index],
                       style: TextStyle(
-                        color: index == _selectedSize
+                        color: sizes[index] == selectedSize
                             ? theme.backgroundColor
                             : theme.primaryColor,
                       ),
