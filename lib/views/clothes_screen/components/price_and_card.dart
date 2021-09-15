@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/helpers/constants.dart';
+import 'package:taj_mall/views/clothes_screen/components/confirmation.dart';
 
 class PriceAndCard extends StatelessWidget {
   const PriceAndCard({
     Key? key,
-    required this.price,
+    required this.data,
   }) : super(key: key);
 
-  final double price;
+  final WomanData data;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,16 @@ class PriceAndCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            "${price.toString()} Сомони",
+            "${data.price.toString()} Сомони",
             style: TextStyle(
               fontSize: theme.textTheme.headline1!.fontSize,
               color: theme.backgroundColor,
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              showConfirmation(context, data);
+            },
             child: Row(
               children: [
                 Icon(

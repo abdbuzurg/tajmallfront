@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/providers/clothes_state_notifier.dart';
-import 'package:taj_mall/state/clothes.dart';
 import 'package:taj_mall/views/clothes_screen/components/brand_products.dart';
 
 import 'components/available_colors.dart';
@@ -55,9 +54,10 @@ class ClothesScreen extends ConsumerWidget {
                     name: data.name,
                     brand: data.brand,
                   ),
-                  AvailableColors(
-                    colors: data.colors,
-                  ),
+                  if (data.colors.length > 1)
+                    AvailableColors(
+                      colors: data.colors,
+                    ),
                   AvailableSizes(sizes: data.sizes),
                   ClothesDescription(description: data.description),
                   if (isThereSimilarProducts)
@@ -73,7 +73,7 @@ class ClothesScreen extends ConsumerWidget {
               ),
             ),
           ),
-          PriceAndCard(price: data.price),
+          PriceAndCard(data: data),
         ],
       ),
     );
