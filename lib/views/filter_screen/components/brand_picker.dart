@@ -4,7 +4,7 @@ import 'package:taj_mall/helpers/constants.dart';
 import 'package:taj_mall/models/clothing_specification.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
-void showClothingTypePicker(BuildContext context) {
+void showBrandPicker(BuildContext context) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -14,11 +14,11 @@ void showClothingTypePicker(BuildContext context) {
     isScrollControlled: true,
     builder: (BuildContext context) {
       final theme = Theme.of(context);
-      List<String> _searchResults = clothingType;
+      List<String> _searchResults = brands;
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return Container(
-            height: MediaQuery.of(context).size.height - kToolbarHeight * 2,
+            height: MediaQuery.of(context).size.height * 0.7,
             padding: EdgeInsets.symmetric(
               horizontal: 2 * kDefaultPadding,
               vertical: 2 * kDefaultPadding,
@@ -30,14 +30,14 @@ void showClothingTypePicker(BuildContext context) {
                   onChanged: (String word) {
                     if (word.isNotEmpty)
                       setState(() {
-                        _searchResults = clothingType
+                        _searchResults = brands
                             .where((type) =>
                                 type.toLowerCase().contains(word.toLowerCase()))
                             .toList();
                       });
                     else
                       setState(() {
-                        _searchResults = clothingType;
+                        _searchResults = brands;
                       });
                   },
                   decoration: InputDecoration(
@@ -77,22 +77,22 @@ void showClothingTypePicker(BuildContext context) {
                   child: SingleChildScrollView(
                     child: Consumer(
                       builder: (BuildContext context, watch, child) {
-                        final List<String> selectedClothingTypes =
-                            watch(filterStateNotifer).clothingType;
+                        final List<String> selectedBrands =
+                            watch(filterStateNotifer).brands;
                         return Wrap(
                           children: [
                             ..._searchResults.map(
-                              (type) {
+                              (brand) {
                                 bool isSelected =
-                                    selectedClothingTypes.indexOf(type) != -1;
+                                    selectedBrands.indexOf(brand) != -1;
                                 return InkWell(
                                   onTap: () {
                                     if (isSelected)
                                       watch(filterStateNotifer.notifier)
-                                          .removeClothingType(type);
+                                          .removeBrand(brand);
                                     else
                                       watch(filterStateNotifer.notifier)
-                                          .addClothingType(type);
+                                          .addBrand(brand);
                                   },
                                   child: Container(
                                     height: 50,
@@ -120,7 +120,7 @@ void showClothingTypePicker(BuildContext context) {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          type,
+                                          brand,
                                           style: TextStyle(
                                             color: isSelected
                                                 ? theme.backgroundColor

@@ -56,3 +56,5 @@ const List<String> clothingType = [
   "Чулки",
   "Халат",
 ];
+
+const List<String> brands = ["Zara", "DeFacto", "Waikiki", "Li-Ning"];

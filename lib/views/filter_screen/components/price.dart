@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
 import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
 class Price extends StatelessWidget {
   const Price({Key? key}) : super(key: key);
@@ -19,6 +21,12 @@ class Price extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  onChanged: (String value) {
+                    context
+                        .read(filterStateNotifer.notifier)
+                        .updatePriceTo(double.parse(value.trim()));
+                  },
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -47,6 +55,12 @@ class Price extends StatelessWidget {
               SizedBox(width: 10),
               Expanded(
                 child: TextField(
+                  onChanged: (String value) {
+                    context
+                        .read(filterStateNotifer.notifier)
+                        .updatePriceFrom(double.parse(value.trim()));
+                  },
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(

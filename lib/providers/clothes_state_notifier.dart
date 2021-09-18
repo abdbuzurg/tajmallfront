@@ -2,21 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ClothesStateNotifier extends StateNotifier<Clothes> {
-  ClothesStateNotifier(Clothes state) : super(state);
+class ClothesStateNotifier extends StateNotifier<ClothesState> {
+  ClothesStateNotifier(ClothesState state) : super(state);
 
   void updateSize(String size) {
-    state = Clothes(state.color, size);
+    state = ClothesState(color: state.color, size: size);
   }
 
   void updateColor(Color color) {
-    state = Clothes(color, state.size);
+    state = ClothesState(color: color, size: state.size);
   }
 }
 
-class Clothes {
-  Color color;
-  String size;
+class ClothesState {
+  final Color color;
+  final String size;
 
-  Clothes(this.color, this.size);
+  ClothesState({required this.color, required this.size});
 }

@@ -38,7 +38,6 @@ class Categories extends StatelessWidget {
           return InkWell(
             onTap: () {
               if (index == categoriesNames.length - 1) {
-                print(index);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

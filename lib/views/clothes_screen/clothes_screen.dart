@@ -17,9 +17,14 @@ late dynamic clothesStateNotifier;
 class ClothesScreen extends ConsumerWidget {
   ClothesScreen(this.data) {
     clothesStateNotifier =
-        StateNotifierProvider.autoDispose<ClothesStateNotifier, Clothes>(
-            (ref) =>
-                ClothesStateNotifier(Clothes(data.colors[0], data.sizes[0])));
+        StateNotifierProvider.autoDispose<ClothesStateNotifier, ClothesState>(
+      (ref) => ClothesStateNotifier(
+        ClothesState(
+          color: data.colors[0],
+          size: data.sizes[0],
+        ),
+      ),
+    );
   }
 
   final WomanData data;
