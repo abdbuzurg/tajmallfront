@@ -5,6 +5,11 @@ import 'package:taj_mall/models/clothing_specification.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
 void showClothingTypePicker(BuildContext context) {
+  List<ClothingType> allWomanClothingType = ClothingType.clothingTypes
+      .where((type) =>
+          type.genderBelonging == GenderBelonging.female ||
+          type.genderBelonging == GenderBelonging.unisex)
+      .toList();
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -14,7 +19,7 @@ void showClothingTypePicker(BuildContext context) {
     isScrollControlled: true,
     builder: (BuildContext context) {
       final theme = Theme.of(context);
-      List<String> _searchResults = clothingType;
+      List<ClothingType> _searchResults = allWomanClothingType;
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return Container(
@@ -30,14 +35,13 @@ void showClothingTypePicker(BuildContext context) {
                   onChanged: (String word) {
                     if (word.isNotEmpty)
                       setState(() {
-                        _searchResults = clothingType
-                            .where((type) =>
-                                type.toLowerCase().contains(word.toLowerCase()))
+                        _searchResults = allWomanClothingType
+                            .where((type) => type.name.contains(word))
                             .toList();
                       });
                     else
                       setState(() {
-                        _searchResults = clothingType;
+                        _searchResults = allWomanClothingType;
                       });
                   },
                   decoration: InputDecoration(
@@ -84,15 +88,16 @@ void showClothingTypePicker(BuildContext context) {
                             ..._searchResults.map(
                               (type) {
                                 bool isSelected =
-                                    selectedClothingTypes.indexOf(type) != -1;
+                                    selectedClothingTypes.indexOf(type.name) !=
+                                        -1;
                                 return InkWell(
                                   onTap: () {
                                     if (isSelected)
                                       watch(filterStateNotifer.notifier)
-                                          .removeClothingType(type);
+                                          .removeClothingType(type.name);
                                     else
                                       watch(filterStateNotifer.notifier)
-                                          .addClothingType(type);
+                                          .addClothingType(type.name);
                                   },
                                   child: Container(
                                     height: 50,
@@ -120,7 +125,7 @@ void showClothingTypePicker(BuildContext context) {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          type,
+                                          type.name,
                                           style: TextStyle(
                                             color: isSelected
                                                 ? theme.backgroundColor

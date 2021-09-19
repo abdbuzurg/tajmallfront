@@ -60,6 +60,7 @@ flutter:
     - assets/images/woman_assets/raincoat/
     - assets/images/woman_assets/short_coat/
     - assets/images/categories/woman_category/
+    - assets/images/clothing_type/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
