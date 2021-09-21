@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 import 'package:taj_mall/models/clothing_specification.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
@@ -16,7 +16,7 @@ class Sizes extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "Размер"),
+          DetailedTitle(title: "Размер"),
           SizedBox(height: 10),
           Consumer(
             builder: (BuildContext context, watch, child) {

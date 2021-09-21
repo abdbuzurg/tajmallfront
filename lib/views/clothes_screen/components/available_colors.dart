@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 import 'package:taj_mall/views/clothes_screen/clothes_screen.dart';
 
 class AvailableColors extends StatelessWidget {
@@ -21,7 +21,7 @@ class AvailableColors extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          DetailTitle(title: "Доступные цвета"),
+          DetailedTitle(title: "Доступные цвета"),
           Container(
             height: 40,
             child: ListView.builder(

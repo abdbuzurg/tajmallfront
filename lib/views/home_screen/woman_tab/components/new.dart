@@ -8,25 +8,28 @@ class New extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<WomanData> data = shuffle(dummyWomanData);
-    return Container(
-      width: double.infinity,
-      height: 280,
-      margin: EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 5,
-      ),
-      padding: EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 0,
-      ),
-      child: ListView.builder(
-        clipBehavior: Clip.none,
-        itemCount: data.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          final oneEntry = data[index];
-          return CustomCard(oneEntry: oneEntry);
-        },
+    return AspectRatio(
+      aspectRatio: 1 / 0.85,
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 5,
+        ),
+        padding: EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 0,
+        ),
+        child: ListView.builder(
+          clipBehavior: Clip.none,
+          itemCount: data.length,
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) {
+            final oneEntry = data[index];
+            return CustomCard(oneEntry: oneEntry);
+          },
+        ),
       ),
     );
   }

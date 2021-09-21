@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:taj_mall/helpers/constants.dart';
+import 'package:taj_mall/models/clothing_specification.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
+import 'package:taj_mall/views/first_level_category_screen/first_level_category_screen.dart';
 
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);
@@ -10,13 +12,25 @@ class Categories extends StatelessWidget {
         "assets/images/categories/woman_category/casual_clothing.jpg",
     "Спортивная одежда":
         "assets/images/categories/woman_category/sport_clothing.jpg",
-    "Национальная одежа":
+    "Национальная одежда":
         "assets/images/categories/woman_category/national_clothing.jpg",
-    "Производcтвенная одежда":
-        "assets/images/categories/woman_category/industrial_clothing.jpg",
     "Собственный подбор":
         "assets/images/categories/woman_category/find_yourself.jpg",
   };
+
+  String getClassification(String classification) {
+    switch (classification) {
+      case "Бытовая одежда":
+        return FirstClothingLevelClassification.casual;
+      case "Спортивная одежда":
+        return FirstClothingLevelClassification.sport;
+      case "Национальная одежда":
+        return FirstClothingLevelClassification.national;
+
+      default:
+        return FirstClothingLevelClassification.casual;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +56,17 @@ class Categories extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => FilterScreen(),
+                  ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FirstLevelCategoryScreen(
+                      nameOfCategory: categoriesNames[index],
+                      firstClothingLevelClassification:
+                          getClassification(categoriesNames[index]),
+                    ),
                   ),
                 );
               }

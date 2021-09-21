@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/helpers/constants.dart';
 import 'package:taj_mall/helpers/custom_card.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 
 class BrandProducts extends StatefulWidget {
   const BrandProducts({Key? key, required this.brand, required this.id})
@@ -34,7 +34,7 @@ class _BrandProductsState extends State<BrandProducts> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "Товары с бренда ${widget.brand}"),
+          DetailedTitle(title: "Товары с бренда ${widget.brand}"),
           SizedBox(height: 5),
           Expanded(
             child: ListView.builder(

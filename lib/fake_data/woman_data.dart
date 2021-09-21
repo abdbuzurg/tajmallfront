@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:taj_mall/models/clothing_specification.dart';
 
 enum ClothesType {
   coat,
@@ -21,6 +22,7 @@ class WomanData {
   String description;
   ClothesType type;
   String brand;
+  String secondLevelClothingType;
 
   WomanData({
     required this.images,
@@ -31,6 +33,7 @@ class WomanData {
     required this.description,
     required this.type,
     required this.brand,
+    required this.secondLevelClothingType,
   });
 }
 
@@ -52,6 +55,7 @@ List<WomanData> shuffle(List<WomanData> items) {
 
 final List<WomanData> dummyWomanData = [
   WomanData(
+      secondLevelClothingType: SecondClothingLevelClassification.coat,
       images: [
         "assets/images/woman_assets/coat/двубортное_пальто_1.jpg",
         "assets/images/woman_assets/coat/двубортное_пальто_2.jpg",
@@ -77,28 +81,31 @@ final List<WomanData> dummyWomanData = [
       type: ClothesType.coat,
       brand: "Zara"),
   WomanData(
-      images: [
-        "assets/images/woman_assets/coat/cтеганое_пальто_2.jpg",
-        "assets/images/woman_assets/coat/cтеганое_пальто_1.jpg",
-        "assets/images/woman_assets/coat/cтеганое_пальто_3.jpg",
-        "assets/images/woman_assets/coat/cтеганое_пальто_4.jpg",
-      ],
-      sizes: [
-        "XS",
-        "S",
-        "M",
-      ],
-      colors: [
-        Color.fromRGBO(133, 133, 133, 1.0),
-        Colors.black,
-      ],
-      name: "Стеганое пальто",
-      price: 4999,
-      description:
-          "Состав: 100% полиэстер, Подкладка: 100% полиэстер, Наполнитель: Синтепон, 100 г/м2 Температурный режим до 10° C\nСтрана-производитель: КИТАЙ\nУход: Не стирать, Не отбеливать, Вертикальная сушка, Не гладить, Профессиональная сухая чистка. Мягкий режим.",
-      type: ClothesType.coat,
-      brand: "Zara"),
+    secondLevelClothingType: SecondClothingLevelClassification.coat,
+    images: [
+      "assets/images/woman_assets/coat/cтеганое_пальто_2.jpg",
+      "assets/images/woman_assets/coat/cтеганое_пальто_1.jpg",
+      "assets/images/woman_assets/coat/cтеганое_пальто_3.jpg",
+      "assets/images/woman_assets/coat/cтеганое_пальто_4.jpg",
+    ],
+    sizes: [
+      "XS",
+      "S",
+      "M",
+    ],
+    colors: [
+      Color.fromRGBO(133, 133, 133, 1.0),
+      Colors.black,
+    ],
+    name: "Стеганое пальто",
+    price: 4999,
+    description:
+        "Состав: 100% полиэстер, Подкладка: 100% полиэстер, Наполнитель: Синтепон, 100 г/м2 Температурный режим до 10° C\nСтрана-производитель: КИТАЙ\nУход: Не стирать, Не отбеливать, Вертикальная сушка, Не гладить, Профессиональная сухая чистка. Мягкий режим.",
+    type: ClothesType.coat,
+    brand: "Zara",
+  ),
   WomanData(
+      secondLevelClothingType: SecondClothingLevelClassification.coat,
       images: [
         "assets/images/woman_assets/coat/пальто_на_поясе_1.jpg",
         "assets/images/woman_assets/coat/пальто_на_поясе_3.jpg",
@@ -121,6 +128,7 @@ final List<WomanData> dummyWomanData = [
       type: ClothesType.coat,
       brand: "Zara"),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.cloak,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/raincoat/плащ_из_экокожи_1.jpg",
@@ -143,6 +151,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.raincoat,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.cloak,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/raincoat/плащ_из_вискозы_1.jpg",
@@ -169,6 +178,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.raincoat,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.cloak,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/raincoat/плащ_из_поясом_1.jpg",
@@ -193,6 +203,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.raincoat,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.jacket,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/jacket/стеганая_куртка_вариант_1.jpg",
@@ -218,6 +229,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.jacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.jacket,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/jacket/куртка_с_капюшоном_1.jpg",
@@ -246,6 +258,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.jacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.jacket,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/jacket/куртка_на_поясе_1.jpg",
@@ -274,6 +287,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.jacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.jacket,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/jeans_jacket/джинсовая_куртка_1.jpg",
@@ -295,6 +309,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.jeansJacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.lightClothing,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/jeans_jacket/джинсовая_рубашка_1.jpg",
@@ -309,13 +324,14 @@ final List<WomanData> dummyWomanData = [
     colors: [
       Color.fromRGBO(77, 169, 255, 1.0),
     ],
-    name: "Джинсовая куртка",
+    name: "Джинсовая рубашка",
     price: 2299,
     description:
         "Состав: 70% хлопок, 30% переработанный хлопок\nСтрана-производитель: КИТАЙ\nУход: Бережная стирка при максимальной температуре 30ºС, Не отбеливать, Машинная сушка запрещена, Глажение при 150ºС, Сухая чистка запрещена, ВОЗМОЖЕН СХОД КРАСИТЕЛЯ. РЕКОМЕНДУЕТСЯ СТИРКА ПЕРЕД НАЧАЛОМ НОСКИ, СТИРАТЬ И ГЛАДИТЬ, ВЫВЕРНУВ НАИЗНАНКУ, С ИЗДЕЛИЯМИ ПОХОЖИХ ЦВЕТОВ",
     type: ClothesType.jeansJacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.coat,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/short_coat/стеганое_полупальто_1.jpg",
@@ -341,6 +357,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.shortCoat,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.cloak,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/down_jacket/стеганый_пуховик_1.jpg",
@@ -364,6 +381,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.downJacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.cloak,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/down_jacket/пуховик_из_хлопка_1.jpg",
@@ -386,6 +404,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.downJacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.jacket,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/jacket/куртка_на_молнии_1.jpg",
@@ -408,6 +427,7 @@ final List<WomanData> dummyWomanData = [
     type: ClothesType.jacket,
   ),
   WomanData(
+    secondLevelClothingType: SecondClothingLevelClassification.jacket,
     brand: "Zara",
     images: [
       "assets/images/woman_assets/leather_jacket/куртка_на_молнии_коссухи_1.jpg",

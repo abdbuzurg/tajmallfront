@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 import 'package:taj_mall/views/filter_screen/components/brand_picker.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
@@ -16,7 +16,7 @@ class Brands extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "Бренд"),
+          DetailedTitle(title: "Бренд"),
           SizedBox(height: 10),
           Consumer(builder: (BuildContext context, watch, child) {
             final List<String> selectedBrands =

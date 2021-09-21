@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/helpers/constants.dart';
 import 'package:taj_mall/helpers/custom_card.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 
 class SimilarProducts extends StatefulWidget {
   const SimilarProducts({Key? key, required this.type, required this.id})
@@ -34,7 +34,7 @@ class _SimilarProductsState extends State<SimilarProducts> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "Подобные товары"),
+          DetailedTitle(title: "Подобные товары"),
           SizedBox(height: 5),
           Expanded(
             child: ListView.builder(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 
 import '../filter_screen.dart';
 import 'clothing_type_picker.dart';
@@ -26,7 +26,7 @@ class ClothingType extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "Тип одежды"),
+          DetailedTitle(title: "Тип одежды"),
           SizedBox(height: 10),
           Consumer(
             builder: (BuildContext context, watch, child) {

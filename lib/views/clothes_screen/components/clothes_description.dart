@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 
 class ClothesDescription extends StatelessWidget {
   const ClothesDescription({
@@ -21,7 +21,7 @@ class ClothesDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "O товаре"),
+          DetailedTitle(title: "O товаре"),
           SizedBox(height: 5),
           Text(
             description,

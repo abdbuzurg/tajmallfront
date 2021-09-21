@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 import 'package:taj_mall/views/clothes_screen/clothes_screen.dart';
 
 class AvailableSizes extends StatelessWidget {
@@ -22,7 +22,7 @@ class AvailableSizes extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          DetailTitle(title: "Доступные размеры"),
+          DetailedTitle(title: "Доступные размеры"),
           Container(
             height: 40,
             width: double.infinity,

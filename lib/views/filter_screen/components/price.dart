@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/helpers/detail_title.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
 class Price extends StatelessWidget {
@@ -14,7 +14,7 @@ class Price extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailTitle(title: "Цена"),
+          DetailedTitle(title: "Цена"),
           SizedBox(height: 15),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,

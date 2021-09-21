@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/helpers/constants.dart';
+import 'package:taj_mall/helpers/detailed_title.dart';
 import 'package:taj_mall/models/clothing_specification.dart';
 import 'package:taj_mall/views/filter_screen/filter_screen.dart';
 
@@ -19,7 +20,8 @@ void showClothingTypePicker(BuildContext context) {
     isScrollControlled: true,
     builder: (BuildContext context) {
       final theme = Theme.of(context);
-      List<ClothingType> _searchResults = allWomanClothingType;
+      List<ClothingType> _searchResults = [];
+      List<String> _selectedMainTypes = [];
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return Container(
@@ -71,6 +73,97 @@ void showClothingTypePicker(BuildContext context) {
                     ),
                     focusColor: theme.primaryColor,
                   ),
+                ),
+                Divider(
+                  thickness: 2,
+                  height: 20,
+                  color: theme.primaryColor,
+                ),
+                DetailedTitle(title: "Главные типы одежды"),
+                SizedBox(height: 5),
+                Consumer(
+                  builder: (BuildContext context, watch, child) {
+                    watch(filterStateNotifer);
+                    return Wrap(
+                      children: [
+                        ...SecondClothingLevelClassification
+                            .allSecondClothingLevelClassificationNames
+                            .map(
+                          (clothingType) {
+                            bool isSelected =
+                                _selectedMainTypes.indexOf(clothingType) != -1;
+                            return InkWell(
+                              onTap: () {
+                                if (isSelected) {
+                                  _selectedMainTypes.remove(clothingType);
+                                  context
+                                      .read(filterStateNotifer.notifier)
+                                      .removeClothingType(clothingType);
+                                  setState(() {
+                                    _searchResults.removeWhere((element) =>
+                                        element.secondLevelClassification ==
+                                        clothingType);
+                                  });
+                                } else {
+                                  _selectedMainTypes.add(clothingType);
+                                  context
+                                      .read(filterStateNotifer.notifier)
+                                      .addClothingType(clothingType);
+                                  setState(() {
+                                    _searchResults = [
+                                      ...allWomanClothingType.where(
+                                        (element) =>
+                                            element.secondLevelClassification ==
+                                            clothingType,
+                                      ),
+                                      ..._searchResults,
+                                    ];
+                                  });
+                                }
+                              },
+                              child: Container(
+                                height: 50,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: kDefaultPadding * 1.5,
+                                  vertical: kDefaultPadding,
+                                ),
+                                margin: EdgeInsets.only(
+                                  right: 5,
+                                  bottom: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: isSelected
+                                      ? theme.primaryColor
+                                      : theme.backgroundColor,
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                    color: theme.primaryColor,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      clothingType,
+                                      style: TextStyle(
+                                        color: isSelected
+                                            ? theme.backgroundColor
+                                            : theme.primaryColor,
+                                        fontSize:
+                                            theme.textTheme.headline3!.fontSize,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  },
                 ),
                 Divider(
                   thickness: 2,
