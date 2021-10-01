@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/helpers/constants.dart';
 
-import '../clothes_screen.dart';
+import '../clothing_screen.dart';
 
 void showConfirmation(BuildContext context, WomanData data) {
   showModalBottomSheet(

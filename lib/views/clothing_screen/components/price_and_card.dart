@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/helpers/constants.dart';
-import 'package:taj_mall/views/clothes_screen/components/confirmation.dart';
+import 'package:taj_mall/views/clothing_screen/components/confirmation.dart';
 
 class PriceAndCard extends StatelessWidget {
   const PriceAndCard({

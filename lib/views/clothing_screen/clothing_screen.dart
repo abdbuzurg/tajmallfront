@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taj_mall/fake_data/woman_data.dart';
 import 'package:taj_mall/providers/clothes_state_notifier.dart';
-import 'package:taj_mall/views/clothes_screen/components/brand_products.dart';
 
 import 'components/available_colors.dart';
+import 'components/brand_products.dart';
 import 'components/carousel.dart';
 import 'components/clothes_description.dart';
 import 'components/clothes_title.dart';
@@ -12,10 +12,11 @@ import 'components/available_sizes.dart';
 import 'components/price_and_card.dart';
 import 'components/similar_products.dart';
 
-late dynamic clothesStateNotifier;
+late AutoDisposeStateNotifierProvider<ClothesStateNotifier, ClothesState>
+    clothesStateNotifier;
 
-class ClothesScreen extends ConsumerWidget {
-  ClothesScreen(this.data) {
+class ClothingScreen extends StatelessWidget {
+  ClothingScreen(this.data) {
     clothesStateNotifier =
         StateNotifierProvider.autoDispose<ClothesStateNotifier, ClothesState>(
       (ref) => ClothesStateNotifier(
@@ -30,14 +31,13 @@ class ClothesScreen extends ConsumerWidget {
   final WomanData data;
 
   @override
-  Widget build(BuildContext context, watch) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bool isThereSimilarProducts = dummyWomanData
             .where((element) => element.type == data.type)
             .toList()
             .length >
         1;
-    watch(clothesStateNotifier);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
